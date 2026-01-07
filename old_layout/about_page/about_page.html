@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – FosterFledging</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Make the stylesheet path absolute -->
+  <link rel="stylesheet" href="/about_page/about.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top custom-navbar">
+    <div class="container">
+      <a class="navbar-brand custom-logo" href="/">FosterFledging</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="/model_housing/housing_search.html">Housing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="/model_counseling/counseling_search.html">Counseling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link" href="/model_organizations/organizations_search.html">Organizations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-nav-link active" aria-current="page" href="/about_page/about_page.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <h1 class="mb-4">Description</h1>
+    <p>
+      FosterFledging empowers young adults (18–24) aging out of foster care by 
+      aggregating affordable housing, low/no-cost counseling, and trusted 
+      organizations that serve them. The site helps users find resources 
+      that fit their eligibility and needs, while also allowing community 
+      members to engage by contributing time, talent, or money.
+    </p>
+  </div>
+  <div class="container my-5">
+    <h1 class="mb-4">Explanation of Disparate Data Integration</h1>
+    <p>
+      Disparate data is data that comes from various sources. In our experience, 
+      combining a broad source of data, such as the Places API (Google Maps), 
+      with something narrower like the NonProfit Explorer API (ProPublica), 
+      leads to both scope and specificity in the results. This is something 
+      that neither could do alone.
+    </p>
+  </div>
+
+  <div class="container my-5">
+    <h1 class="mb-4">Meet the Group Members</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div>
+        <img src="/about_page/images/lukas-m.jpg" width="150" />
+        <h3>Lukas Mathesius</h3>
+        <ul>
+          <li>Role: Phase 1 Leader</li>
+          <li>Bio: Junior CS and Math student at UT Austin interested in ML, OS, and consulting.</li>
+          <li>Major Responsibilities: AWS</li>
+          <li># of Commits: <span id="lukas-commits"></span></li>
+          <li># of Issues: <span id="lukas-issues"></span></li>
+          <li># of Unit Tests: 0</li>
+        </ul>
+      </div>
+      <div>
+        <img src="/about_page/images/ameera-h.PNG" width="150" />
+        <h3>Ameera Habib</h3>
+        <ul>
+          <li>Role: Fullstack Developer</li>
+          <li>Bio: Junior CS major with a business minor at UT Austin interested in SWE & PM.</li>
+          <li>Major Responsibilities: Model pages</li>
+          <li># of Commits: <span id="ameera-commits"></span></li>
+          <li># of Issues: <span id="ameera-issues"></span></li>
+          <li># of Unit Tests: 0</li>
+        </ul>
+      </div>
+      <div>
+        <img src="/about_page/images/angel-o.jpg" width="150" />
+        <h3>Angel Ogungbemi</h3>
+        <ul>
+          <li>Role: Full Stack Developer</li>
+          <li>Bio: Junior CS student at UT Austin interested in full-stack development and cybersecurity.</li>
+          <li>Major Responsibilities: Frontend team</li>
+          <li># of Commits: <span id="angel-commits"></span></li>
+          <li># of Issues: <span id="angel-issues"></span></li>
+          <li># of Unit Tests: 0</li>
+        </ul>
+      </div>
+      <div>
+        <img src="/about_page/images/20250927_221345_2.jpg" width="150" />
+        <h3>Gora Bepary</h3>
+        <ul>
+          <li>Role: Fullstack Developer</li>
+          <li>Bio: Junior CS student at UT Austin passionate about graphics and ML.</li>
+          <li>Major Responsibilities: Data scrape, backend team</li>
+          <li># of Commits: <span id="gora-commits"></span></li>
+          <li># of Issues: <span id="gora-issues"></span></li>
+          <li># of Unit Tests: 5</li>
+        </ul>
+      </div>
+      <div>
+        <img src="/about_page/images/HeadshotFall24low.jpeg" width="150" />
+        <h3>Danyal Saeed</h3>
+        <ul>
+          <li>Role: Fullstack Developer</li>
+          <li>Bio: Junior CS student at UT Austin passionate about ML and app development.</li>
+          <li>Major Responsibilities: Backend team</li>
+          <li># of Commits: <span id="danyal-commits"></span></li>
+          <li># of Issues: <span id="danyal-issues"></span></li>
+          <li># of Unit Tests: 10</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <h1 class="mb-4">Data Sources</h1>
+    <ul>
+      <li><a target="_blank" href="https://projects.propublica.org/nonprofits/api">ProPublica</a></li>
+      <li><a target="_blank" href="https://www.google.com/maps">Google Maps</a></li>
+    </ul>
+  </div>
+
+  <div class="container my-5">
+    <h1>Tools Used</h1>
+    <ul>
+      <li>HTML/CSS: web pages and styling</li>
+      <li>GitLab: version control</li>
+      <li>Postman: API endpoints</li>
+    </ul>
+  </div>
+
+  <div class="container my-5">
+    <h1>Other Links</h1>
+    <ul>
+      <li><a target="_blank" href="https://gitlab.com/matheluk/cs373-fall-2025-55090_06">GitLab</a></li>
+      <li><a target="_blank" href="https://documenter.getpostman.com/view/48800265/2sB3QDwD34">Postman API</a></li>
+    </ul>
+  </div>
+
+  <script src="/about_page/about.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

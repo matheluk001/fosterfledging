@@ -1,0 +1,27 @@
+# Node / tooling
+node_modules
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# Vite / build cache
+dist
+.vite
+.cache
+
+# Your repo’s deploy target (host build output)
+layout
+../layout
+
+# IDE / OS
+.vscode
+.idea
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Env / secrets
+.env
+.env.*

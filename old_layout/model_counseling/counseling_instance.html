@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Counseling Instance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        #instance-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        #instance-card h2 {
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .card-body p {
+            margin-bottom: 0.5rem;
+        }
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .related-card-header {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+
+    <a href="counseling_search.html" class="btn btn-secondary mb-4">← Back to Counseling</a>
+
+    <!-- Main Counseling Instance -->
+    <div id="instance-card" class="card shadow-sm p-4 mb-5"></div>
+
+    <!-- Related Housing Resources -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white related-card-header">
+            Related Housing Resources
+        </div>
+        <div class="card-body">
+            <div id="related-housing" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+        </div>
+    </div>
+
+    <!-- Related Organizations -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-success text-white related-card-header">
+            Related Organizations
+        </div>
+        <div class="card-body">
+            <div id="related-organizations" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="counseling_instance.js"></script>
+</body>
+</html>

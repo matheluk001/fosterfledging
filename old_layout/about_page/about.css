@@ -1,0 +1,139 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Body Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+
+        /* Custom Header Styling (enhances Bootstrap navbar) */
+        .custom-navbar {
+            background: white !important;
+            border-bottom: 1px solid #ddd;
+            transition: all 0.3s ease;
+            box-shadow: none;
+        }
+
+        .custom-navbar.scrolled {
+            border-bottom: 2px solid #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .custom-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333 !important;
+            text-decoration: none;
+        }
+
+        .custom-nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .custom-nav-link:hover {
+            color: #666 !important;
+        }
+
+        /* Custom Hero Section (uses Bootstrap grid but custom styling) */
+        .custom-hero {
+            height: 100vh;
+            background: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            animation: fadeInUp 1s ease;
+        }
+
+        .custom-hero p {
+            font-size: 1.3rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .custom-cta-button {
+            background: #333 !important;
+            border: 2px solid #333 !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .custom-cta-button:hover {
+            background: white !important;
+            color: #333 !important;
+            border-color: #333 !important;
+        }
+
+        /* Custom Features Section (Bootstrap cards + custom styling) */
+        .custom-features {
+            background: #f9f9f9;
+        }
+
+        .custom-feature-card {
+            border: 1px solid #ddd !important;
+            box-shadow: none !important;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #333 !important;
+        }
+
+        .custom-section-title {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        /* Custom Question Cards (Bootstrap cards + dark theme) */
+        .custom-question-card {
+            background: #333 !important;
+            color: white !important;
+            border: 2px solid #333 !important;
+            transition: all 0.3s ease;
+        }
+
+        .custom-question-card:hover {
+            background: white !important;
+            color: #333 !important;
+        }
+
+        /* Custom Footer */
+        .custom-footer {
+            background: #333;
+            color: white;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Overrides */
+        @media (max-width: 768px) {
+            .custom-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .custom-hero p {
+                font-size: 1.1rem;
+            }
+        }
