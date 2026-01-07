@@ -1,0 +1,154 @@
+stages:
+  - check
+  - build
+  - deploy
+  - test
+variables:
+  AWS_DEFAULT_REGION: us-east-1 
+  
+.hidden-base:
+  before_script:
+    - date
+    - uname -p
+    - uname -s
+    - printenv | sort
+
+# CHECK
+
+check-repo:
+  stage: check
+  extends: .hidden-base
+  image: alpine:3.20
+  before_script:
+    - apk add --no-cache git
+  script:
+    - git --version
+    - git status
+    - git branch
+
+build-frontend:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  variables:
+    DOCKER_BUILDKIT: "1"
+  script:
+    - docker build --target build --output type=local,dest=frontend/tmp-build frontend/
+    - ls -R frontend/tmp-build
+    - mkdir -p frontend/dist
+    - cp -r frontend/tmp-build/app/dist/. frontend/dist/
+    - rm -rf frontend/tmp-build
+    - ls -R frontend/dist
+    # - mkdir -p frontend/dist
+    # - docker build --target build -o output=frontend/dist frontend/
+    # - ls -R frontend/dist   # verify contents
+  artifacts:
+    paths:
+      - frontend/dist
+
+deploy-frontend:
+  stage: deploy
+  image:
+    name: amazon/aws-cli:2.15.0
+    entrypoint: [""]
+  dependencies:
+    - build-frontend
+  script:
+    - ls -R frontend/dist
+    - aws s3 sync frontend/dist "s3://$S3_BUCKET/" --delete
+    - aws cloudfront create-invalidation --distribution-id "$CF_DISTRIBUTION_ID" --paths "/*"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  environment:
+    name: production
+
+
+# ---------- BACKEND: BUILD & PUSH IMAGE TO ECR ----------
+build-backend:
+  stage: build
+  extends: .hidden-base
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  rules:
+    # Build only when backend changes (adjust the list if needed)
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      changes:
+        - backend/**/*
+        - backend/Dockerfile
+        - backend/requirements.txt
+  before_script:
+    - apk add --no-cache python3 py3-pip
+    - pip install --upgrade awscli
+    - aws --version
+  script:
+    - aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
+    - docker build -t foster-backend:prod backend
+    - docker tag foster-backend:prod "$ECR_BACKEND_REPO:prod"
+    - docker push "$ECR_BACKEND_REPO:prod"
+  artifacts:
+    when: on_success
+
+# ---------- BACKEND: DEPLOY (ROLL ECS SERVICE) ----------
+deploy-backend:
+  stage: deploy
+  extends: .hidden-base
+  image: python:3.12
+  needs:
+    - job: build-backend
+      optional: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+      allow_failure: false
+  before_script:
+    - pip install --upgrade awscli
+  script:
+    # Force the running ECS service to pull the new :prod image
+    - aws ecs update-service --cluster "$ECS_CLUSTER" --service "$ECS_SERVICE_BACKEND" --force-new-deployment
+  environment:
+    name: production
+
+
+# ---------- TESTS ----------
+api_tests:
+  stage: test
+  image: node:18
+  script:
+    - npm install -g newman
+    - newman run postman/new_tests.json --env-var "BASE_URL=$AWS_API_URL" --reporters cli,junit --reporter-junit-export results.xml
+  artifacts:
+    when: always
+    reports:
+      junit: results.xml
+    paths:
+      - results.xml
+
+test_backend:
+  image: python:3.11
+  stage: test
+  before_script:
+    - pip install -r backend/requirements.txt
+  script:
+    - pytest -v backend/
+
+selenium_tests:
+  stage: test
+  image: python:3.11
+  services:
+    - name: selenium/standalone-chrome:latest
+      alias: chrome
+  variables:
+    DISPLAY: ":99"
+  before_script:
+    - pip install selenium
+  script:
+    - python -m unittest discover -s tests
+  artifacts:
+    when: always
+    paths:
+      - screenshots/
+    expire_in: 1 week

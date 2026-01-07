@@ -1,0 +1,20 @@
+# Editor/IDE files
+.vscode/
+
+# Logs
+*.log
+
+# Optional: Temporary files
+*.tmp
+*.swp
+*.bak
+
+# other junk files
+.DS_Store
+
+# Pycache
+__pycache__/
+
+# Pytest Cache
+.pytest_cache/
+node_modules
