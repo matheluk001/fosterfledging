@@ -81,7 +81,6 @@ if (isNaN(id)) {
                     loading="lazy"
                     allowfullscreen
                     referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDxdnMN98-DPS0W4TuaJwsiV0-3D6dIv4Y&q=${instanceLat},${instanceLng}">
                 </iframe>
             </div>
         `;
